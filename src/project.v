@@ -17,7 +17,7 @@ module tt_um_KoushikCSN (
 
 reg [15:0] Out;
     
-always posedge(clk)
+always @posedge(clk)
     begin
         if(uio_oe) 
             Out[15:8]<=uio_out;
