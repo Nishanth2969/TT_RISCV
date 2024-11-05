@@ -10,7 +10,7 @@ output reg [31:0] out
 );
 
 //Perform ALU operation based on operation select input
-    always @(opdA, opdB, op_sel) begin
+    always_latch @(opdA, opdB, op_sel) begin
     case(op_sel)
         `ADD: out = opdA + opdB;
         `SUB: out = opdA - opdB;
