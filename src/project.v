@@ -14,7 +14,9 @@ module tt_um_KoushikCSN (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-  
+
+wire [15:0] Out;
+    
 assign Out={uio_out,uo_out};
     
 ProcessorTopModule ProcessorTopModule(
