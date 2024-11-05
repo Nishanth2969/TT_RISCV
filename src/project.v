@@ -15,9 +15,15 @@ module tt_um_KoushikCSN (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-wire [15:0] Out;
+reg [15:0] Out;
     
-assign Out={uio_out,uo_out};
+always posedge(clk)
+    begin
+        if(uio_oe) 
+            Out[15:8]<=uio_out;
+        else
+            Out[7:0]<= uo_out;
+    end
     
 ProcessorTopModule ProcessorTopModule(
     .CLK(clk), 
