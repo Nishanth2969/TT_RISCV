@@ -40,9 +40,9 @@ module DMEM(
     reg [31:0] rom [0:`ROM_LENGTH -1];
     initial begin
   
-        rom[0] <= 32'h`DEHIT;   //0X00100000
-        rom[1] <= 32'h`SRIRAM;   //0X00100004
-        rom[2] <= 32'h`RISHABH;  //0X00100008
+        rom[0] = 32'h`DEHIT;   //0X00100000
+        rom[1] = 32'h`SRIRAM;   //0X00100004
+        rom[2] = 32'h`RISHABH;  //0X00100008
         //led <= 16'h0000;
     end
 
