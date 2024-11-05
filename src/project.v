@@ -20,12 +20,12 @@ wire [15:0] Out;
 assign Out={uio_out,uo_out};
     
 ProcessorTopModule ProcessorTopModule(
-    .clk(CLK), 
-    .rst_n(BTN),
-    .ui_in(SWITCH),
-    .Out(LED),
-    .uio_oe(SEG),
-    .uio_oe(AN)
+    .CLK(clk), 
+    .BTN(rst_n),
+    .SWITCH(ui_in),
+    .LED(Out),
+    .SEG(uio_oe),
+    .AN(uio_oe)
     );    
 
 endmodule
