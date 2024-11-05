@@ -12,8 +12,8 @@ module INS_MEM(
     
     //LOAD IMEM
     //initial $readmemh("rc5.mem", imem);
-    //initial $readmemh("Integration_IMEM.mem", imem);
-    initial $readmemh("Factorial.mem", imem);
+    initial $readmemh("Integration_IMEM.mem", imem);
+    //initial $readmemh("Factorial.mem", imem);
 
         
     always@(posedge clk)
