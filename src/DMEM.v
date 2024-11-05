@@ -43,7 +43,7 @@ module DMEM(
         rom[0] <= 32'h`DEHIT;   //0X00100000
         rom[1] <= 32'h`SRIRAM;   //0X00100004
         rom[2] <= 32'h`RISHABH;  //0X00100008
-        led <= 16'h0000;
+        //led <= 16'h0000;
     end
 
     wire [11:0] addr;
