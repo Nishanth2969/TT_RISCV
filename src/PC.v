@@ -19,8 +19,8 @@ always @(posedge clk or negedge rst)
             end
             else begin
                     if (WEN == 1) begin //Update Program Counter when WEN is asserted by Control Unit   
-                            if (IMM == 1) temp_inst_add = IMM_addr[31:2];    //Immediate address when IMM is asserted
-                            else temp_inst_add = inst_addr[31:2] + 1;   //4 Byte increment
+                        if (IMM == 1) temp_inst_add <= IMM_addr[31:2];    //Immediate address when IMM is asserted
+                            else temp_inst_add <= inst_addr[31:2] + 1;   //4 Byte increment
                             
                             if (temp_inst_add > 30'h01000FFC/4 | temp_inst_add < 30'h01000000/4) HALT_pc <= 1'b1;    // HALT_pc asserted if Program Counter reaches values out of the lower and upper IMEM limit
                             
