@@ -5,7 +5,7 @@ module ProcessorTopModule(
     input wire CLK, BTN,
     input wire [15:0] SWITCH,
     output wire [15:0] LED,
-    output wire [6:0] SEG,
+    output wire [7:0] SEG,
     output wire [3:0] AN
     );
 
