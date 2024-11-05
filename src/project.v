@@ -23,7 +23,7 @@ ProcessorTopModule ProcessorTopModule(
     .ui_in(SWITCH),
     .Out(LED),
     .uio_oe(SEG),
-    uio_oe(AN)
+    .uio_oe(AN)
     );    
 
 endmodule
