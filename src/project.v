@@ -17,13 +17,14 @@ module tt_um_KoushikCSN (
 
 reg [15:0] Out;
     
-    always @(posedge clk)
-    begin
-        if(uio_oe) 
-            Out[15:8]<=uio_out;
-        else
-            Out[7:0]<= uo_out;
-    end
+always @(posedge clk)
+begin
+    if (uio_oe)
+        uio_out <= Out[15:8];  // driving uio_out
+    else
+        uo_out <= Out[7:0];    // driving uo_out
+end
+
     
 ProcessorTopModule ProcessorTopModule(
     .CLK(clk), 
