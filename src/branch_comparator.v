@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 //1. Including the  required Header Files, Defining the Instruction Set Codes in it:
 //===================================================================================================================================================
 `include "header.vh"
