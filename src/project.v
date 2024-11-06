@@ -21,16 +21,16 @@ module tt_um_KoushikCSN (
     // Sequential logic to update `Out`, `uo_out`, and `uio_out`
     always @(posedge clk or negedge rst_n) 
 	begin
-        if (!rst_n) begin
+        if (rst_n) begin
             // Reset logic
-            Out <= 16'b0;
+            //Out <= 16'b0;
             uo_out <= 8'b0;
             uio_out <= 8'b0;
             uio_oe <= 8'b0;
             SWITCH <= 16'b0;
         end 
 		
-		else begin
+	else begin
             // Assign combined inputs to `SWITCH` and set `Out` based on `SWITCH`
             SWITCH <= {uio_in, ui_in};  // Combining inputs to form 16-bit `SWITCH`
             
