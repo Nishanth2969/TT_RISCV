@@ -21,16 +21,6 @@ module tt_um_KoushikCSN (
     // Sequential logic to update `Out`, `uo_out`, and `uio_out`
     always @(posedge clk or negedge rst_n) 
 	begin
-        if (rst_n) begin
-            // Reset logic
-            Out = 16'b0;
-            uo_out = 8'b0;
-            uio_out = 8'b0;
-            uio_oe = 8'b0;
-            SWITCH = 16'b0;
-        end 
-		
-	else begin
             // Assign combined inputs to `SWITCH` and set `Out` based on `SWITCH`
             SWITCH <= {uio_in, ui_in};  // Combining inputs to form 16-bit `SWITCH`
             
@@ -38,7 +28,6 @@ module tt_um_KoushikCSN (
             uo_out <= Out[7:0];         // Lower 8 bits of Out assigned to uo_out
             uio_out <= Out[15:8];       // Upper 8 bits of Out assigned to uio_out
             uio_oe <= 8'b1;      		// Set output enable for `uio_out`
-        end
     end
 
     // Instantiate the ProcessorTopModule
