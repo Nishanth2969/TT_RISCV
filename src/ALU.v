@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 `include "header.vh"
 
 module ALU(
@@ -10,7 +9,7 @@ output reg [31:0] out
 );
 
 //Perform ALU operation based on operation select input
-    always @(*) begin
+    always_latch begin
     case(op_sel)
         `ADD: out = opdA + opdB;
         `SUB: out = opdA - opdB;
