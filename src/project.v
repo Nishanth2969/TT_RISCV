@@ -30,7 +30,7 @@ ProcessorTopModule ProcessorTopModule(
     .BTN(rst_n),
     .SWITCH(ui_in),
     .LED(Out),
-    .SEG(uio_oe),
+    .SEG(uio_out),
     .AN(uio_oe)
     );    
 
