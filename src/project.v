@@ -23,11 +23,11 @@ module tt_um_KoushikCSN (
 	begin
         if (rst_n) begin
             // Reset logic
-            //Out <= 16'b0;
-            uo_out <= 8'b0;
-            uio_out <= 8'b0;
-            uio_oe <= 8'b0;
-            SWITCH <= 16'b0;
+            Out = 16'b0;
+            uo_out = 8'b0;
+            uio_out = 8'b0;
+            uio_oe = 8'b0;
+            SWITCH = 16'b0;
         end 
 		
 	else begin
