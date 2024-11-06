@@ -5,34 +5,50 @@
 //`default_nettype none
 
 module tt_um_KoushikCSN (
-    input  wire [7:0] ui_in,    // Dedicated inputs 
-    output wire [7:0] uo_out,   // Dedicated outputs 
-    input  wire [7:0] uio_in,   // IOs: Input 
-    output wire [7:0] uio_out,  // IOs: Output path (carry_out, overflow)
-    output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
-    input  wire       ena,      // always 1 when the design is powered, so you can ignore it
-    input  wire       clk,      // clock
-    input  wire       rst_n     // reset_n - low to reset
+    input  wire [7:0] ui_in,        // Dedicated inputs 
+    output reg  [7:0] uo_out,       // Dedicated outputs 
+    input  wire [7:0] uio_in,       // IOs: Input 
+    output reg  [7:0] uio_out,      // IOs: Output path (carry_out, overflow)
+    output reg  [7:0] uio_oe,       // IOs: Enable path (active high: 0=input, 1=output)
+    input  wire       ena,          // always 1 when the design is powered, so you can ignore it
+    input  wire       clk,          // clock
+    input  wire       rst_n         // reset_n - low to reset
 );
 
-reg [15:0] Out;
-    
-always @(posedge clk)
-begin
-    if (uio_oe)
-        uio_out <= Out[15:8];  // driving uio_out
-    else
-        uo_out <= Out[7:0];    // driving uo_out
-end
+    reg [15:0] Out;  // Internal register for combined output values
+    reg [15:0] SWITCH; // Extended switch inputs for ProcessorTopModule
 
-    
-ProcessorTopModule ProcessorTopModule(
-    .CLK(clk), 
-    .BTN(rst_n),
-    .SWITCH(ui_in),
-    .LED(Out),
-    .SEG(uio_out),
-    .AN(uio_oe)
+    // Sequential logic to update `Out`, `uo_out`, and `uio_out`
+    always @(posedge clk or negedge rst_n) 
+	begin
+        if (!rst_n) begin
+            // Reset logic
+            Out <= 16'b0;
+            uo_out <= 8'b0;
+            uio_out <= 8'b0;
+            uio_oe <= 8'b0;
+            SWITCH <= 16'b0;
+        end 
+		
+		else begin
+            // Assign combined inputs to `SWITCH` and set `Out` based on `SWITCH`
+            SWITCH <= {uio_in, ui_in};  // Combining inputs to form 16-bit `SWITCH`
+            
+            // Split `Out` into `uo_out` and `uio_out` parts
+            uo_out <= Out[7:0];         // Lower 8 bits of Out assigned to uo_out
+            uio_out <= Out[15:8];       // Upper 8 bits of Out assigned to uio_out
+            uio_oe <= 8'b1;      		// Set output enable for `uio_out`
+        end
+    end
+
+    // Instantiate the ProcessorTopModule
+    ProcessorTopModule ProcessorTopModule_inst (
+        .CLK(clk), 
+        .BTN(rst_n),
+        .SWITCH(SWITCH),       // 16-bit input switch
+        .LED(Out),             // 16-bit output LED driven by Out
+        .SEG(uio_out),         // Connect 8-bit SEG to upper 8 bits of Out
+        .AN(uio_oe[3:0])       // Use only 4 bits for AN as per module definition
     );    
 
 endmodule
