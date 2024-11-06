@@ -8,7 +8,7 @@ module INS_MEM(
     );
         
     //4KB IMEM DEFINED FROM 0x01000000 to 0x01000FFF
-    (*rom_style = "block" *) reg [31:0] imem [0:1023];
+    (*rom_style = "block" *) reg [31:0] imem [0:256];
     
     //LOAD IMEM
     //initial $readmemh("rc5.mem", imem);
