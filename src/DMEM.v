@@ -1,8 +1,8 @@
-`timescale 1ns / 1ps
 `include "header.vh"
 
 //RAM PARAMETERS
-`define RAM_LENGTH_WORDS 1024
+//`define RAM_LENGTH_WORDS 1024
+`define RAM_LENGTH_WORDS 256
 `define RAM_ADDR_BITS 12
 `define STARTING_ADDR_BIT 32
 
