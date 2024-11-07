@@ -17,7 +17,7 @@
 
 
 
-module tt_um_KoushikCSN_RISCV (
+module tt_um_Nishanth_RISCV (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
