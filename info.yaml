@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "RISCV Processor Design"      # Project title
-  author:       "Nishanth"      # Your name
+  author:       "Nishanth Kotla"      # Your name
   discord:      "nish2908"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "RISCV Processor Design"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
